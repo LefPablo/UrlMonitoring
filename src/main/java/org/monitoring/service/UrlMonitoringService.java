@@ -11,14 +11,20 @@ import java.net.*;
 public class UrlMonitoringService {
 
     public static final int DEFAULT_PORT = 80;
+    private boolean urlAvailable;
 
     private final Logger logger = LoggerFactory.getLogger(UrlMonitoringService.class);
 
     public boolean isUrlAvailable(URL url) {
-        return pingHost(url.getHost(), DEFAULT_PORT);
+        urlAvailable = pingHost(url.getHost(), DEFAULT_PORT);
+        return urlAvailable;
     }
 
-    public boolean pingHost(String host, int port) {
+    public boolean getLastResult() {
+        return urlAvailable;
+    }
+
+    private boolean pingHost(String host, int port) {
         try (Socket socket = new Socket()) {
             socket.connect(new InetSocketAddress(host, port));
             return true;
