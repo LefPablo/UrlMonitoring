@@ -1,0 +1,7 @@
+URL_TO_MONITOR=https://superuser.com/questions/720641/should-i-run-my-small-website-in-port-80-8080-or-81
+CRON_EXPRESSION=* * * * * ?
+EMAIL_TO=finskiypavel@gmail.com
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USERNAME=finskiypavel@gmail.com
+SMTP_PASSWORD=xqdyackoofouamlf

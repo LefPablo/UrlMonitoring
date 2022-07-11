@@ -1,19 +1,17 @@
 package org.monitoring.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.net.*;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.URL;
 
 @Service
 public class UrlMonitoringService {
 
     public static final int DEFAULT_PORT = 80;
     private boolean urlAvailable;
-
-    private final Logger logger = LoggerFactory.getLogger(UrlMonitoringService.class);
 
     public boolean isUrlAvailable(URL url) {
         urlAvailable = pingHost(url.getHost(), DEFAULT_PORT);
