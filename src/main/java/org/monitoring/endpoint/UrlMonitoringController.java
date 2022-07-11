@@ -1,5 +1,6 @@
 package org.monitoring.endpoint;
 
+import io.swagger.annotations.ApiOperation;
 import org.monitoring.schedule.UrlAvailabilitySchedule;
 import org.monitoring.service.UrlMonitoringService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("monitoring")
-public class UrlMonitoringController { //TODO wrap responses
+public class UrlMonitoringController {
 
     private static final String SCHEDULED_TASK = "urlAvailabilitySchedule";
 
@@ -25,18 +26,21 @@ public class UrlMonitoringController { //TODO wrap responses
         this.postProcessor = postProcessor;
     }
 
+    @ApiOperation(value = "Start url monitoring schedule.")
     @GetMapping(path = "/start", produces = "application/json")
     public String startMonitoring() {
         postProcessor.postProcessAfterInitialization(scheduledTask, SCHEDULED_TASK);
-        return "OK";
+        return "Monitoring schedule started successfully";
     }
 
+    @ApiOperation(value = "Stop url monitoring schedule.")
     @GetMapping(path = "/stop", produces = "application/json")
     public String stopMonitoring() {
         postProcessor.postProcessBeforeDestruction(scheduledTask, SCHEDULED_TASK);
-        return "OK";
+        return "Monitoring schedule stopped successfully";
     }
 
+    @ApiOperation(value = "Get last monitoring result.")
     @GetMapping(path = "/result", produces = "application/json")
     public boolean getResult() {
         return monitoringService.getLastResult();

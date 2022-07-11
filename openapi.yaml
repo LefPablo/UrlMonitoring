@@ -1,0 +1,83 @@
+openapi: 3.0.1
+info:
+  title: Api Documentation
+  description: Api Documentation
+  termsOfService: urn:tos
+  contact: {}
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+  - url: //localhost:8081/
+tags:
+  - name: url-monitoring-controller
+    description: Url Monitoring Controller
+paths:
+  /monitoring/result:
+    get:
+      tags:
+        - url-monitoring-controller
+      summary: Get last monitoring result.
+      operationId: getResultUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+  /monitoring/start:
+    get:
+      tags:
+        - url-monitoring-controller
+      summary: Start url monitoring schedule.
+      operationId: startMonitoringUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+  /monitoring/stop:
+    get:
+      tags:
+        - url-monitoring-controller
+      summary: Stop url monitoring schedule.
+      operationId: stopMonitoringUsingGET
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+          content: {}
+        '403':
+          description: Forbidden
+          content: {}
+        '404':
+          description: Not Found
+          content: {}
+components: {}
