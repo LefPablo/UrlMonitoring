@@ -18,8 +18,10 @@ public class UrlAvailabilitySchedule {
 
     @Value("${email.subject}")
     private String subject;
-    private final String urlToCheck;
-    private final String to;
+    @Value("${email.to}")
+    private String to;
+    @Value("${monitor.url}")
+    private String urlToCheck;
 
     private final UrlMonitoringService monitoringService;
     private final EmailService emailService;
@@ -30,11 +32,9 @@ public class UrlAvailabilitySchedule {
     public UrlAvailabilitySchedule(UrlMonitoringService monitoringService, EmailService emailService) {
         this.monitoringService = monitoringService;
         this.emailService = emailService;
-        this.urlToCheck = System.getProperty(ConfigConstants.URL_TO_MONITOR);
-        this.to = System.getProperty(ConfigConstants.EMAIL_TO);
     }
 
-    @Scheduled(cron= "#{environment.CRON_EXPRESSION}")
+    @Scheduled(cron= "${cron.expression}")
     public void checkUrlAvailability() {
         try {
             URL url = new URL(urlToCheck);
