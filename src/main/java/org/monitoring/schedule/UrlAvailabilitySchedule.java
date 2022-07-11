@@ -1,6 +1,5 @@
 package org.monitoring.schedule;
 
-import org.monitoring.constants.ConfigConstants;
 import org.monitoring.service.EmailService;
 import org.monitoring.service.UrlMonitoringService;
 import org.slf4j.Logger;
